@@ -1,8 +1,17 @@
-import{collection, addDoc, db, doc, setDoc, updateDoc, arrayUnion, arrayRemove,query, where, getDocs, getDoc} from "./firebase.js";
+import{collection, addDoc, db, 
+  // doc, setDoc, updateDoc, 
+  arrayUnion, 
+  // arrayRemove,
+  query, where,   onSnapshot, limit, 
+  // getDocs, getDoc, serverTimestamp, orderBy,  
+  //getDoc, 
+} from "./firebase.js";
+
 
 
 let submitBtn = document.getElementById("submitBtn");
 submitBtn.addEventListener("click", async () => {
+  console.log("working")
     let name = document.getElementById("name");
     let phone = document.getElementById("phone");
     let address = document.getElementById("address");
@@ -14,20 +23,20 @@ submitBtn.addEventListener("click", async () => {
 
 
     // -------- add data with random id-------
-    // try {
-    //     const docRef = await addDoc(collection(db, "users"), {
-    //     name: name.value,
-    //     phone: phone.value,
-    //     address: address.value,
-    //     cnic: cnic.value,
-    //     age: age.value,
-    //     hobbies: arrayUnion(...hobbies),
-    //     time: serverTimestamp(),
-    //     });
-    //     console.log("Document written with ID: ", docRef.id);
-    //   } catch (e) {
-    //     console.error("Error adding document: ", e);
-    //   }
+    try {
+        const docRef = await addDoc(collection(db, "users"), {
+        name: name.value,
+        phone: phone.value,
+        address: address.value,
+        cnic: cnic.value,
+        age: age.value,
+        hobbies: arrayUnion(...hobbies),
+        // time: serverTimestamp(),
+        });
+        console.log("Document written with ID: ", docRef.id);
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
  
 
     // ----------add data with decided id-----
@@ -108,53 +117,6 @@ submitBtn.addEventListener("click", async () => {
     // console.log("No such document!");
     // }
 
-
+    location.href = "profile.html";
 
 });
-
-
-
-
-
-
-
-
-
-
-
-// -------------miss flie-----------
-// import {
-//     collection,
-//     getDocs,
-//     updateDoc,
-//     doc,
-//     setDoc,
-//     addDoc,
-//     query,orderBy,
-//     db,
-//     serverTimestamp,
-//     arrayUnion,
-//     arrayRemove,
-//     getDoc,
-//     onSnapshot,
-//     limit,
-//     where
-//   } from "./firebase.js";
-  
-
-//   const usersRef = collection(db, "users");
-  
-//   // const q = query(usersRef,orderBy("name","desc")) 
-//   const q = query(usersRef,where("age",">","18")) 
-  
-//   const unsubscribe = onSnapshot(q, (querySnapshot) => {
-//      console.count("calling");
-//     let userDiv = document.getElementById("userName");
-//     userDiv.innerHTML = "";
-//     querySnapshot.forEach((doc) => {
-     
-  
-//       userDiv.innerHTML += `<p> ${doc.data().name}</p>`;
-//       console.log(doc.data().name);
-//     });
-//   });
