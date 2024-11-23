@@ -27,6 +27,7 @@ body {
   /* overflow: auto; */
   /* background-color: red; */
   overflow: auto;
+  margin-top: 25%;
 }
 
 .container .title {
@@ -147,6 +148,93 @@ button:hover {
   background: linear-gradient(-135deg, #71b7e6, #9b59b6);
 }
 
+/* ------drop file------- */
+.container2 {
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.drag-drop-area {
+  border: 2px dashed #6c63ff;
+  border-radius: 10px;
+  padding: 30px;
+  background-color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.drag-drop-area:hover {
+  background-color: #f0f0ff;
+}
+
+.icon {
+  font-size: 50px;
+  margin-bottom: 10px;
+  color: #6c63ff;
+}
+
+.drag-drop-area h2 {
+  margin: 10px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.drag-drop-area p {
+  margin: 5px 0 20px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.filebtn{
+  padding: 10px 20px;
+  border: none;
+  background-color: #6c63ff;
+  color: white;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filebtn:hover {
+  background-color: #5949e0;
+}
+
+#fileList {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.file-item span {
+  font-size: 14px;
+  color: #555;
+}
+
+.file-item button {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.file-item button:hover {
+  background-color: #ff4d4d;
+}
+
 
 /* --------profile pg-------- */
 .bodypro {
@@ -159,6 +247,8 @@ button:hover {
   align-items: center;
   background-color: #1369ce;
 }
+
+
 .container-profile1{
   /* background-color: aqua; */
   width: 100%;

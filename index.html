@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> Responsive Registration Form | CodingLab </title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div class="container">
     <!-- Title section -->
@@ -17,62 +19,65 @@
           <!-- Input for Full Name -->
           <div class="input-box">
             <span class="details">Full Name</span>
-            <input id="name" type="text" placeholder="Enter your name"  required>
+            <input id="name" type="text" placeholder="Enter your name" required>
           </div>
-          <!-- Input for Username -->
+          <!-- Input for cnic -->
           <div class="input-box">
             <span class="details">CNIC</span>
-            <input id="cnic" type="number" placeholder="Enter your cnic"  required>
+            <input id="cnic" type="number" placeholder="Enter your cnic" required>
           </div>
-          <!-- Input for Email -->
+          <!-- Input hobbies -->
           <div class="input-box">
             <span class="details">Hobbies</span>
-            <input id="hobbies" type="text" placeholder="Enter your hobbies"  required>
+            <input id="hobbies" type="text" placeholder="Enter your hobbies" required>
           </div>
           <!-- Input for Phone Number -->
           <div class="input-box">
             <span class="details">Phone Number</span>
-            <input id="phone" type="number" placeholder="Enter your number"  required>
+            <input id="phone" type="number" placeholder="Enter your number" required>
           </div>
-          <!-- Input for Password -->
+          <!-- Input for adddress -->
           <div class="input-box">
             <span class="details">Address</span>
-            <input  id="address" type="text" placeholder="Enter your address" required>
+            <input id="address" type="text" placeholder="Enter your address" required>
           </div>
-          <!-- Input for Confirm Password -->
+          <!-- Input for age -->
           <div class="input-box">
             <span class="details">AGE</span>
-            <input id="age" type="number" placeholder="Confirm your Number"  required>
+            <input id="age" type="number" placeholder="Confirm your Number" required>
           </div>
-        </div>
-        <!-- <div class="gender-details">
-          Radio buttons for gender selection
-          <input type="radio" name="gender" id="dot-1">
-          <input type="radio" name="gender" id="dot-2">
-          <span class="gender-title">Gender</span>
-          <div class="category">
-            Label for Male
-            <label for="dot-1">
-              <span class="dot one"></span>
-              <span class="gender">Male</span>
-            </label>
-            Label for Female
-            <label for="dot-2">
-              <span class="dot two"></span>
-              <span class="gender">Female</span>
-            </label>
+
+
+          <!-- Input for img -->
+          <div class="input-box">
+            <span class="details">image</span>
+            <input type="file"  id="fileInput" multiple >
           </div>
-        </div> -->
-        <!-- Submit button -->
-        <div>
-          <button id="submitBtn" type="button">Register</button>
+          <!-- Input for pdf -->
+          <div class="container2">
+            <div class="drag-drop-area"  id="dropArea">
+              <i class="icon">📂</i>
+              <h2>Drag & Drop Your Files Here</h2>
+            </div>
+          </div>
+
+          </div>
+
+
         </div>
-      </form>
-    </div>
+       
+
+  <div>
+    <button id="submitBtn" type="button">Register</button>
+  </div>
+  </form>
+  </div>
   </div>
 
 
   <script type="module" src="app.js"></script>
+  <script type="module" src="profile.js"></script>
   <script type="module" src="firebase.js"></script>
 </body>
+
 </html>

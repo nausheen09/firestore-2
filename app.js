@@ -117,6 +117,8 @@ submitBtn.addEventListener("click", async () => {
     // console.log("No such document!");
     // }
 
-    location.href = "profile.html";
+    // location.href = "profile.html";
 
 });
+
+
