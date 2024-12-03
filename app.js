@@ -54,6 +54,7 @@ fileInput.addEventListener("change", () => {
           } else {
             let img = new Image();
             img.src = transformedUrl;
+            console.log(transformedUrl)
 
             // Event listeners for loading and error
             // img.onload = () => {
@@ -71,6 +72,7 @@ fileInput.addEventListener("change", () => {
     }
   }
 });
+
 
 
 
@@ -168,10 +170,10 @@ submitBtn.addEventListener("click", async () => {
         address: address.value,
         cnic: cnic.value,
         age: age.value,
-        // image: image.value,
         hobbies: arrayUnion(...hobbies),
         // time: serverTimestamp(),
-        image: image.files[0]?.name || "No image uploaded", 
+        image: image.files[0]?.name || "No image uploaded", // Store the file name
+        resourceURl: resourceURl || "", // Store the Cloudinary URL 
         });
         console.log("Document written with ID: ", docRef.id);
       } catch (e) {

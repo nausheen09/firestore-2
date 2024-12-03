@@ -18,22 +18,21 @@ import{collection,  db,
     userDiv.innerHTML = "";
     // console.log(userDiv, "notnow")
     querySnapshot.forEach((doc) => {
-     
+
+      // Default image in case resourceURl is missing
+       const userImage = doc.data().transformedUrl || "default-image-url.jpg";
+
       
       userDiv.innerHTML += `<div class="row row1">
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="our-team">
                     <div class="picture"  id="gallery">
-                    <img src="${doc.data().resourceURl}" alt="">
+                    <img src="${userImage}" alt="im ok">
                     </div>
-                    
-                  
-                   
                       <div  id="dropArea">
                      
                       </div>
-                
-
+                      
                     <div class="team-content">
                         <h3 class="name">${doc.data().name}</h3>
                         <h4 class="title">${doc.data().phone}</h4>
@@ -54,6 +53,8 @@ import{collection,  db,
             </div>
         </div>`;
       console.log(doc.data().name);
+      console.log("Fetched Data:", doc.data());
+
     });
    });
 
