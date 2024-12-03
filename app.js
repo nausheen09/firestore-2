@@ -43,8 +43,10 @@ fileInput.addEventListener("change", () => {
 
           console.log("Uploaded successfully", resourceURl);
 
+          
+        
           // Handle different file types (image, video, pdf)
-          if (data.format == "pdf" || data.format == "mp4" || data.format == "jpej") {
+          if (data.format == "pdf" || data.format == "mp4" || data.format == "jpeg") {
             let iframe = document.createElement("iframe");
             iframe.src = resourceURl;
             iframe.width = "500px";
@@ -172,8 +174,9 @@ submitBtn.addEventListener("click", async () => {
         age: age.value,
         hobbies: arrayUnion(...hobbies),
         // time: serverTimestamp(),
-        image: image.files[0]?.name || "No image uploaded", // Store the file name
-        resourceURl: resourceURl || "", // Store the Cloudinary URL 
+        // image: image.files[0]?.name || "No image uploaded", // Store the file name
+        // resourceURl: resourceURl || "", // Store the Cloudinary URL 
+        imageURL: resourceURl,
         });
         console.log("Document written with ID: ", docRef.id);
       } catch (e) {

@@ -4,7 +4,8 @@ import{collection,  db,
 
 
   const usersRef = collection(db, "users");
-  
+
+
   // const q = query(usersRef,orderBy("name","desc")) 
   const q = query(usersRef,where("age",">","18")) 
   
@@ -20,14 +21,13 @@ import{collection,  db,
     querySnapshot.forEach((doc) => {
 
       // Default image in case resourceURl is missing
-       const userImage = doc.data().transformedUrl || "default-image-url.jpg";
-
+       const userImage = doc.data().resourceURl || "default-image-url.jpg";
       
       userDiv.innerHTML += `<div class="row row1">
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="our-team">
                     <div class="picture"  id="gallery">
-                    <img src="${userImage}" alt="im ok">
+                    <img src="${userImage}" alt="im ok"></img>
                     </div>
                       <div  id="dropArea">
                      
@@ -56,7 +56,7 @@ import{collection,  db,
       console.log("Fetched Data:", doc.data());
 
     });
-   });
+   }); ////sahi code
 
 
 
@@ -66,136 +66,74 @@ import{collection,  db,
 
 
 
-// --------------file upload--------
-// const cloudName = "dgtsbc43h";
-// const unsignedUploadPreset = "mclp2wp0";
 
-// let fileInput = document.getElementById("fileInput");
-// console.log(fileInput + "ok mil gai")
-// let gallery = document.getElementById("gallery");
 
-// fileInput.addEventListener("change", () => {
-//   let files = fileInput.files; // This will be a FileList object
-//   if (files.length > 0) {
-//     // Using for...of loop to iterate over files
-//     for (let file of files) {
-//       let url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
 
-//       let fd = new FormData();
-//       fd.append("upload_preset", unsignedUploadPreset);
-//       fd.append("file", file);
 
-//       fetch(url, {
-//         method: "POST",
-//         body: fd,
-//       })
-//         .then((response) => response.json())
-//         .then((data) => {
-//           let resourceURl = data.secure_url;
-          
-//           // Fix: Correct URL transformation for cropping and face detection
-//           let transformedUrl = resourceURl.replace(
-//             "upload/",
-//             "upload/c_thumb,g_auto,h_200,w_200/r_max/"
-//           );
 
-//           console.log("Uploaded successfully", resourceURl);
 
-//           // Handle different file types (image, video, pdf)
-//           if (data.format == "pdf" || data.format == "mp4" || data.format == "jpej") {
-//             let iframe = document.createElement("iframe");
-//             iframe.src = resourceURl;
-//             iframe.width = "500px";
-//             iframe.height = "500px";
-//             gallery.appendChild(iframe);
-//             console.log(iframe);
-//           } else {
-//             let img = new Image();
-//             img.src = transformedUrl;
 
-//             // Event listeners for loading and error
-//             img.onload = () => {
-//               gallery.appendChild(img);
-//             };
 
-//             img.onerror = (error) => {
-//               console.error("Error loading image: ", error);
-//             };
-//           }
-//         })
-//         .catch((e) => {
-//           console.log(e);
-//         });
+// --------------chatgpt---------
+// import { collection, db, query, where, onSnapshot, doc, getDoc } from "./firebase.js";
+
+// // Fetch Single Document
+// const docRef = doc(db, "users", "VALID_DOCUMENT_ID"); // Replace with a valid document ID
+// try {
+//     const docSnap = await getDoc(docRef);
+//     if (docSnap.exists()) {
+//         const data = docSnap.data();
+//         console.log("User Data:", data);
+
+//         document.querySelector("#userDiv").innerHTML = `
+//             <h1>${data.name || "N/A"}</h1>
+//             <p>${data.email || "N/A"}</p>
+//             <img src="${data.imageURL || "default-image-url.jpg"}" alt="Profile Picture">
+//         `;
+//     } else {
+//         console.log("No document found!");
 //     }
-//   }
+// } catch (error) {
+//     console.error("Error fetching document:", error);
+// }
+
+// // Real-Time Listener for Query
+// const usersRef = collection(db, "users");
+// const q = query(usersRef, where("age", ">", 18)); // Example query
+// onSnapshot(q, (querySnapshot) => {
+//     console.count("Live update triggered");
+//     const userDiv = document.getElementById("userDiv");
+//     userDiv.innerHTML = "";
+
+//     querySnapshot.forEach((doc) => {
+//         const userData = doc.data();
+//         const userImage = userData.imageURL || "default-image-url.jpg"; // Default image
+
+//         userDiv.innerHTML += `
+//             <div class="row row1">
+//                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+//                     <div class="our-team">
+//                         <div class="picture">
+//                             <img src="${userImage}" alt="User Image">
+//                         </div>
+//                         <div class="team-content">
+//                             <h3 class="name">${userData.name || "N/A"}</h3>
+//                             <h4 class="title">${userData.phone || "N/A"}</h4>
+//                             <h5 class="title">${userData.cnic || "N/A"}</h5>
+//                             <h5 class="title">${userData.address || "N/A"}</h5>
+//                             <h5 class="title">${userData.age || "N/A"}</h5>
+//                             <h5 class="title">${userData.hobbies || "N/A"}</h5>
+//                         </div>
+//                         <ul class="social">
+//                             <li><a href="#"><i class="fa-brands fa-square-facebook fa-lg" style="color: #ffffff;"></i></a></li>
+//                             <li><a href="#"><i class="fa-brands fa-instagram fa-lg" style="color: #ffffff;"></i></a></li>
+//                             <li><a href="#"><i class="fa-brands fa-linkedin fa-lg" style="color: #ffffff;"></i></a></li>
+//                             <li><a href="#"><i class="fa-brands fa-x-twitter fa-lg" style="color: #ffffff;"></i></a></li>
+//                         </ul>
+//                     </div>
+//                 </div>
+//             </div>
+//         `;
+//         console.log("Fetched Data:", userData);
+//     });
 // });
-
-
-// let dropArea = document.getElementById("dropArea");
-
-// dropArea.addEventListener("dragover", (e) => {
-//   e.preventDefault();
-//   console.log("Dragging over");
-// });
-
-// dropArea.addEventListener("drop", (event) => {
-//   event.stopPropagation();
-//   event.preventDefault();
-//   console.log("Dropped");
-
-//   let files = event.dataTransfer.files;
-//   console.log(files);
-
-//   // Using for...of loop to iterate over files dropped in the drop area
-//   for (let file of files) {
-//     let url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
-
-//     let fd = new FormData();
-//     fd.append("upload_preset", unsignedUploadPreset);
-//     fd.append("file", file);
-
-//     fetch(url, {
-//       method: "POST",
-//       body: fd,
-//     })
-//       .then((response) => response.json())
-//       .then((data) => {
-//         let resourceURl = data.secure_url;
-        
-//         // Fix: Correct URL transformation for cropping and face detection
-//         let transformedUrl = resourceURl.replace(
-//           "upload/",
-//           "upload/c_thumb,g_auto,h_200,w_200/r_max/"
-//         );
-
-//         console.log("Uploaded successfully", resourceURl);
-
-//         // Handle different file types (image, video, pdf)
-//         if (data.format == "pdf" || data.format == "mp4") {
-//           let iframe = document.createElement("iframe");
-//           iframe.src = resourceURl;
-//           iframe.width = "500px";
-//           iframe.height = "500px";
-//           gallery.appendChild(iframe);
-//           console.log(iframe);
-//         } else {
-//           let img = new Image();
-//           img.src = transformedUrl;
-
-//           // Event listeners for loading and error
-//           img.onload = () => {
-//             gallery.appendChild(img);
-//           };
-
-//           img.onerror = (error) => {
-//             console.error("Error loading image: ", error);
-//           };
-//         }
-//       })
-//       .catch((e) => {
-//         console.log(e);
-//       });
-//   }
-// });
-
- 
